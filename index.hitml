@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ahmed XR - صانع محتوى ألعاب</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0; padding: 0;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px 10px;
+      text-align: center;
+      position: relative;
+    }
+    /* شعار القناة */
+    .logo {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 120px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.7);
+    }
+    h1 {
+      margin: 0 0 5px;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+    p.subtitle {
+      margin: 0 0 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+    /* زر القائمة ثلاث نقاط يمين */
+    .menu-btn {
+      font-size: 28px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      position: absolute;
+      top: 25px;
+      left: 20px;
+      color: #fff;
+      user-select: none;
+    }
+    /* القائمة المنسدلة */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background-color: #fff;
+      color: #333;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      min-width: 160px;
+      z-index: 1000;
+      overflow: hidden;
+      font-weight: 600;
+    }
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      transition: background-color 0.3s;
+    }
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+    .dropdown a:hover {
+      background-color: #6a11cb;
+      color: #fff;
+    }
+    .show {
+      display: block;
+    }
+    /* زر تحويل اللغة */
+    .lang-switch {
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid #fff;
+      border-radius: 25px;
+      padding: 6px 15px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 700;
+      user-select: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .lang-switch:hover {
+      background: #fff;
+      color: #6a11cb;
+    }
+    main {
+      max-width: 900px;
+      width: 90%;
+      flex-grow: 1;
+    }
+    section {
+      margin-bottom: 2.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 0.3rem;
+    }
+    iframe {
+      width: 100%;
+      height: 340px;
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+    footer {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ddd;
+      user-select: none;
+    }
+    /* أيقونة إيميل صغيرة */
+    .email-icon {
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      margin-left: 8px;
+      filter: invert(1);
+    }
+    /* قسم التواصل */
+    .contact-section {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+    }
+    .contact-section a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .contact-section a:hover {
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button class="menu-btn" id="menuBtn" aria-label="القائمة">⋮</button>
+  <img src="https://yt3.googleusercontent.com/ytc/AGIKgqPNrmxO9T4wwb3ZP1Y30fROr7ZrQmgYo1vB7SYspg=s176-c-k-c0x00ffffff-no-rj" alt="شعار قناة Ahmed XR" class="logo" />
+  <h1 data-lang-ar="أحمد XR" data-lang-en="Ahmed XR">أحمد XR</h1>
+  <p class="subtitle" data-lang-ar="صانع محتوى ترفيهي وألعاب" data-lang-en="Gaming & Entertainment Content Creator">صانع محتوى ترفيهي وألعاب</p>
+
+  <!-- قسم تواصل معي -->
+  <div class="contact-section" aria-label="تواصل معي">
+    <span data-lang-ar="تواصل معي" data-lang-en="Contact Me">تواصل معي:</span>
+    <a href="mailto:xrahmed4159@gmail.com" aria-label="البريد الإلكتروني">
+      xrahmed4159@gmail.com
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="إيميل" class="email-icon" />
+    </a>
+  </div>
+
+  <div class="lang-switch" id="langSwitch" role="button" tabindex="0" aria-label="تغيير اللغة">English</div>
+
+  <div class="dropdown" id="dropdownMenu">
+    <a href="#about" data-lang-ar="عنّي" data-lang-en="About Me">عنّي</a>
+    <a href="#videos" data-lang-ar="آخر الفيديوهات" data-lang-en="Latest Videos">آخر الفيديوهات</a>
+    <a href="mailto:xrahmed4159@gmail.com" data-lang-ar="اتصل بي" data-lang-en="Contact Me">اتصل بي</a>
+    <a href="https://www.youtube.com/@ahmedxr4" target="_blank" data-lang-ar="قناتي على يوتيوب" data-lang-en="My YouTube Channel">قناتي على يوتيوب</a>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <h2 data-lang-ar="عنّي" data-lang-en="About Me">عنّي</h2>
+    <p data-lang-ar="أنا أحمد من العراق، صانع محتوى ترفيهي وألعاب. أشارك متعة اللعب والتحديات مع جمهوري عبر قناتي على يوتيوب." 
+       data-lang-en="I'm Ahmed from Iraq, a gaming & entertainment content creator sharing gameplay and challenges on my YouTube channel.">
+       أنا أحمد من العراق، صانع محتوى ترفيهي وألعاب. أشارك متعة اللعب والتحديات مع جمهوري عبر قناتي على يوتيوب.</p>
+  </section>
+
+  <section id="videos">
+    <h2 data-lang-ar="آخر الفيديوهات" data-lang-en="Latest Videos">آخر الفيديوهات</h2>
+    <iframe src="https://www.youtube.com/embed/8YxQZSlnSzw" allowfullscreen></iframe>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Ahmed XR. جميع الحقوق محفوظة.
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const dropdown = document.getElementById('dropdownMenu');
+  const langSwitch = document.getElementById('langSwitch');
+  let currentLang = 'ar';
+
+  menuBtn.addEventListener('click', () => {
+    dropdown.classList.toggle('show');
+  });
+
+  window.addEventListener('click', (e) => {
+    if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('show');
+    }
+  });
+
+  langSwitch.addEventListener('click', () => {
+    if (currentLang === 'ar<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ahmed XR - صانع محتوى ألعاب</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0; padding: 0;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px 10px;
+      text-align: center;
+      position: relative;
+    }
+    /* شعار القناة */
+    .logo {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 120px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.7);
+    }
+    h1 {
+      margin: 0 0 5px;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+    p.subtitle {
+      margin: 0 0 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+    /* زر القائمة ثلاث نقاط يمين */
+    .menu-btn {
+      font-size: 28px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      position: absolute;
+      top: 25px;
+      left: 20px;
+      color: #fff;
+      user-select: none;
+    }
+    /* القائمة المنسدلة */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background-color: #fff;
+      color: #333;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      min-width: 160px;
+      z-index: 1000;
+      overflow: hidden;
+      font-weight: 600;
+    }
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      transition: background-color 0.3s;
+    }
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+    .dropdown a:hover {
+      background-color: #6a11cb;
+      color: #fff;
+    }
+    .show {
+      display: block;
+    }
+    /* زر تحويل اللغة */
+    .lang-switch {
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid #fff;
+      border-radius: 25px;
+      padding: 6px 15px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 700;
+      user-select: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .lang-switch:hover {
+      background: #fff;
+      color: #6a11cb;
+    }
+    main {
+      max-width: 900px;
+      width: 90%;
+      flex-grow: 1;
+    }
+    section {
+      margin-bottom: 2.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 0.3rem;
+    }
+    iframe {
+      width: 100%;
+      height: 340px;
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+    footer {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ddd;
+      user-select: none;
+    }
+    /* أيقونة إيميل صغيرة */
+    .email-icon {
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      margin-left: 8px;
+      filter: invert(1);
+    }
+    /* قسم التواصل */
+    .contact-section {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+    }
+    .contact-section a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .contact-section a:hover {
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button class="menu-btn" id="menuBtn" aria-label="القائمة">⋮</button>
+  <img src="https://yt3.googleusercontent.com/ytc/AGIKgqPNrmxO9T4wwb3ZP1Y30fROr7ZrQmgYo1vB7SYspg=s176-c-k-c0x00ffffff-no-rj" alt="شعار قناة Ahmed XR" class="logo" />
+  <h1 data-lang-ar="أحمد XR" data-lang-en="Ahmed XR">أحمد XR</h1>
+  <p class="subtitle" data-lang-ar="صانع محتوى ترفيهي وألعاب" data-lang-en="Gaming & Entertainment Content Creator">صانع محتوى ترفيهي وألعاب</p>
+
+  <!-- قسم تواصل معي -->
+  <div class="contact-section" aria-label="تواصل معي">
+    <span data-lang-ar="تواصل معي" data-lang-en="Contact Me">تواصل معي:</span>
+    <a href="mailto:xrahmed4159@gmail.com" aria-label="البريد الإلكتروني">
+      xrahmed4159@gmail.com
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="إيميل" class="email-icon" />
+    </a>
+  </div>
+
+  <div class="lang-switch" id="langSwitch" role="button" tabindex="0" aria-label="تغيير اللغة">English</div>
+
+  <div class="dropdown" id="dropdownMenu">
+    <a href="#about" data-lang-ar="عنّي" data-lang-en="About Me">عنّي</a>
+    <a href="#videos" data-lang-ar="آخر الفيديوهات" data-lang-en="Latest Videos">آخر الفيديوهات</a>
+    <a href="mailto:xrahmed4159@gmail.com" data-lang-ar="اتصل بي" data-lang-en="Contact Me">اتصل بي</a>
+    <a href="https://www.youtube.com/@ahmedxr4" target="_blank" data-lang-ar="قناتي على يوتيوب" data-lang-en="My YouTube Channel">قناتي على يوتيوب</a>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <h2 data-lang-ar="عنّي" data-lang-en="About Me">عنّي</h2>
+    <p data-lang-ar="أنا أحمد من العراق، صانع محتوى ترفيهي وألعاب. أشارك متعة اللعب والتحديات مع جمهوري عبر قناتي على يوتيوب." 
+       data-lang-en="I'm Ahmed from Iraq, a gaming & entertainment content creator sharing gameplay and challenges on my YouTube channel.">
+       أنا أحمد من العراق، صانع محتوى ترفيهي وألعاب. أشارك متعة اللعب والتحديات مع جمهوري عبر قناتي على يوتيوب.</p>
+  </section>
+
+  <section id="videos">
+    <h2 data-lang-ar="آخر الفيديوهات" data-lang-en="Latest Videos">آخر الفيديوهات</h2>
+    <iframe src="https://www.youtube.com/embed/8YxQZSlnSzw" allowfullscreen></iframe>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Ahmed XR. جميع الحقوق محفوظة.
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const dropdown = document.getElementById('dropdownMenu');
+  const langSwitch = document.getElementById('langSwitch');
+  let currentLang = 'ar';
+
+  menuBtn.addEventListener('click', () => {
+    dropdown.classList.toggle('show');
+  });
+
+  window.addEventListener('click', (e) => {
+    if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('show');
+    }
+  });
+
+  langSwitch.addEventListener('click', () => {
+    if (currentLang === 'ar
